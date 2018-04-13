@@ -1,0 +1,3 @@
+[submodule "stm8s-sdcc"]
+	path = stm8s-sdcc
+	url = https://github.com/jaseg/stm8s-sdcc

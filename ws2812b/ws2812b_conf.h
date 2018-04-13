@@ -16,6 +16,6 @@
 #define WS2812B_PORT  GPIOD_PORT
 #define WS2812B_PIN   3
 
-#define NB_LEDS         60
+#define NB_LEDS       50
 
 #endif
