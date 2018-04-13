@@ -28,5 +28,5 @@ $(OUTDIR)/%.rel: %.c
 	$(SDCC) -c $(CFLAGS) -o $(dir $@) $^
 
 .PHONY:flash
-flash:
+flash: all
 	$(STM8FLASH) -c$(PROGRAMMER) -p$(PART) -w $(notdir $(MAIN:.c=.ihx))
