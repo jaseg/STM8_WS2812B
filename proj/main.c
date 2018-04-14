@@ -3,6 +3,7 @@
 #include "stm8s.h"
 #include "stm8s_conf.h"
 #include "ws2812b_fx.h"
+#include "stm8s_tim2.h"
 
 #define GROUP_SIZE 4
 #define NGROUPS (sizeof(LedsArray)/sizeof(LedsArray[0])/GROUP_SIZE/3)
@@ -11,31 +12,85 @@ unsigned char LedsArray[NB_LEDS * 3];
 unsigned int nbLedsBytes = NB_LEDS * 3;
 
 uint8_t flicker(uint8_t ch);
-void _delay_ms(uint16_t wait);
+void _delay_ms(uint16_t ms);
+void _delay_us(uint16_t us);
 
 
 void main(void) {  
     uint16_t i;
     uint8_t j, x, y, z;
+    uint8_t inval[8];
 
     CLK_DeInit();
     CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);
+    CLK->PCKENR1 |= 0x20;
 
     GPIO_Init (GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_LOW_FAST);
     GPIO_Init (GPIOD, GPIO_PIN_3, GPIO_MODE_OUT_PP_LOW_FAST);
 
-    enableInterrupts();
+    GPIOA->DDR |=  0x08;
+    GPIOA->CR1 |=  0x08;
+    GPIOA->CR2 &= ~0x08;
+
+    GPIOC->DDR &= ~0xf0;
+    GPIOC->CR1 |=  0xf0;
+    GPIOC->CR2 &= ~0xf0;
+
+    TIM2->CR1   =  0x01;
+    TIM2->CCMR3 =  0x60;
+    TIM2->CCER2 =  0x01;
+    TIM2->ARRH  =  0x01;
+    TIM2->ARRL  =  0x00;
+
+    TIM2->CCR3L =  0x80;
+    //TIM2->EGR   =  0x01;
+
+    //enableInterrupts();
 
     while(1) { 
         /* x: cold white
          * y: amber
          * z: warm white
          */
+
+        x = 0;
+        j = 0;
+        TIM2->CCR3L = 0;
+        do {
+            _delay_us(10);
+            y = GPIOC->IDR>>4;
+            TIM2->CCR3L = j+1;
+
+            z = ~x & y;
+            if (z&1) inval[0] = j;
+            if (z&2) inval[1] = j;
+            if (z&4) inval[2] = j;
+            if (z&8) inval[3] = j;
+            j++;
+        } while(j);
+
         for (i=0; i<sizeof(LedsArray)/sizeof(LedsArray[0])/GROUP_SIZE/3; i++) {
+            //x = y = z = 0;
+            //y = z = flicker(i);
+            //z >>= 1; /* adjust color temperature: use amber at full power, but
+            //            warm white only at half output. Amber is pretty dim. */
             x = y = z = 0;
-            y = z = flicker(i);
-            z >>= 1; /* adjust color temperature: use amber at full power, but
-                        warm white only at half output. Amber is pretty dim. */
+            //x = GPIOC->IDR & ((1<<4)<<(i&3)) ? 16 : 0;
+            x = inval[i&3];
+            if (x < 32)
+                x = 0;
+            else if (x >= 224)
+                x = 255;
+            else {
+                x -= 32;
+                x = x + (x>>2);
+            }
+
+            y = x;
+            x = x>64 ? x-64 : 0;
+            z = ((x>>4) * (x>>4));
+            x = 0;
+
             for (j=0; j<GROUP_SIZE; j++) {
                 LedsArray[i*3*GROUP_SIZE+j*3+0] = x; //(i&1 ? j : ~j)&7;
                 LedsArray[i*3*GROUP_SIZE+j*3+1] = y; //(i&2 ? j : ~j)&7;
@@ -44,7 +99,7 @@ void main(void) {
         }
         rgb_SendArray();
         //j = ~j;
-        _delay_ms(25);
+        //_delay_ms(25);
     }
 }
 
