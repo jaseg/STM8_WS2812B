@@ -21,12 +21,12 @@ void main(void) {
     uint8_t j, x, y, z;
     uint8_t inval[8];
 
-    CLK_DeInit();
-    CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);
+    CLK->CKDIVR = 0x00;
     CLK->PCKENR1 |= 0x20;
 
-    GPIO_Init (GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_LOW_FAST);
-    GPIO_Init (GPIOD, GPIO_PIN_3, GPIO_MODE_OUT_PP_LOW_FAST);
+    GPIOD->DDR |= 0x08;
+    GPIOD->CR1 |= 0x08;
+    GPIOD->CR2 |= 0x08;
 
     GPIOA->DDR |=  0x08;
     GPIOA->CR1 |=  0x08;

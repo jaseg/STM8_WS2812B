@@ -10,9 +10,7 @@ CFLAGS := --std-c11 -DSTM8S103 -DF_CPU=16000000 -lstm8 -mstm8 $(INCLUDES)
 LDFLAGS := 
 
 MAIN := proj/main.c
-SOURCES := stm8s-sdcc/src/stm8s_clk.c\
-	stm8s-sdcc/src/stm8s_gpio.c\
-	proj/stm8s_it.c\
+SOURCES := proj/stm8s_it.c\
 	ws2812b/ws2812b_fx.c\
 	ws2812b/ws2812b_LLD.c
 
