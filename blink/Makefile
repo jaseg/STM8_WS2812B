@@ -28,3 +28,8 @@ $(OUTDIR)/%.rel: %.c
 .PHONY:flash
 flash: all
 	$(STM8FLASH) -c$(PROGRAMMER) -p$(PART) -w $(notdir $(MAIN:.c=.ihx))
+
+.PHONY: clean
+clean:
+	rm -f main.asm main.cdb main.ihx main.lk main.lst main.map main.rel main.rst main.sym
+

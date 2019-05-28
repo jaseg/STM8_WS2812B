@@ -1,0 +1,176 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     FFFFFFFF  s_SSEG                          
+     00000000  .__.ABS.                           
+     00000000  l_CABS                          
+     00000000  l_DABS                          
+     00000000  l__CODE                         
+     00000000  s_CABS                          
+     00000000  s_DABS                          
+     00000000  s__CODE                         
+     00000001  l_SSEG                          
+     00000001  s_DATA                          
+     00000002  l_INITIALIZED                   
+     00000002  l_INITIALIZER                   
+     00000003  l_GSFINAL                       
+     00000007  l_HOME                          
+     0000001A  l_GSINIT                        
+     0000009D  l_DATA                          
+     0000009E  s_INITIALIZED                   
+     00000633  l_CODE                          
+     00008000  s_HOME                          
+     00008007  s_GSINIT                        
+     00008021  s_GSFINAL                       
+     00008024  s_CODE                          
+     00008657  s_INITIALIZER                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DATA                                00000001    0000009D =         157. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000001  _LedsArray                         main
+     00000097  _flame                             main
+     00000098  _flameprime                        main
+     00000099  _wind                              main
+     0000009A  _x                                 main
+     0000009B  _a                                 main
+     0000009C  _b                                 main
+     0000009D  _c                                 main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+INITIALIZED                         0000009E    00000002 =           2. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000009E  _nbLedsBytes                       main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                FFFFFFFF    00000001 =           1. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00008000    00000007 =           7. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT                              00008007    0000001A =          26. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             00008021    00000003 =           3. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CODE                                00008024    00000633 =        1587. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00008024  _set_stars                         main
+     000080C1  _main                              main
+     000081B7  _random                            main
+     000081DB  _flicker                           main
+     00008267  _uptime_routine                    main
+     00008272  __delay_us                         main
+     000082B9  __delay_ms                         main
+     000082D1  _assert_failed                     main
+     000082D4  _TRAP_IRQHandler                   stm8s_it
+     000082D5  _TLI_IRQHandler                    stm8s_it
+     000082D6  _AWU_IRQHandler                    stm8s_it
+     000082D7  _CLK_IRQHandler                    stm8s_it
+     000082D8  _EXTI_PORTA_IRQHandler             stm8s_it
+     000082D9  _EXTI_PORTB_IRQHandler             stm8s_it
+     000082DA  _EXTI_PORTC_IRQHandler             stm8s_it
+     000082DB  _EXTI_PORTD_IRQHandler             stm8s_it
+     000082DC  _EXTI_PORTE_IRQHandler             stm8s_it
+     000082DD  _SPI_IRQHandler                    stm8s_it
+     000082DE  _TIM1_CAP_COM_IRQHandler           stm8s_it
+     000082DF  _TIM2_UPD_OVF_BRK_IRQHandler       stm8s_it
+     000082E0  _TIM2_CAP_COM_IRQHandler           stm8s_it
+     000082E1  _UART1_TX_IRQHandler               stm8s_it
+     000082E2  _UART1_RX_IRQHandler               stm8s_it
+     000082E3  _TIM1_UPD_OVF_TRG_BRK_IRQHandler   stm8s_it
+     000082E4  _I2C_IRQHandler                    stm8s_it
+     000082E5  _ADC1_IRQHandler                   stm8s_it
+     000082E6  _TIM4_UPD_OVF_IRQHandler           stm8s_it
+     000082E7  _EEPROM_EEC_IRQHandler             stm8s_it
+     000082E8  _Wheel                             ws2812b_fx
+     0000837F  _rainbowCycle                      ws2812b_fx
+     000083C5  _rgb_SendArray                     ws2812b_LLD
+     0000856B  __divulong                         
+     000085C5  __modsint                          
+     000085DB  __mullong                          
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+INITIALIZER                         00008657    00000002 =           2. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+
+Files Linked                              [ module(s) ]
+
+main.rel                                  [ main ]
+build/proj/stm8s_it.rel                   [ stm8s_it ]
+build/ws2812b/ws2812b_fx.rel              [ ws2812b_fx ]
+build/ws2812b/ws2812b_LLD.rel             [ ws2812b_LLD ]
+
+
+Libraries Linked                          [ object file ]
+
+/usr/share/sdcc/lib/stm8/stm8.lib         [ _divulong.rel ]
+/usr/share/sdcc/lib/stm8/stm8.lib         [ _modsint.rel ]
+/usr/share/sdcc/lib/stm8/stm8.lib         [ _mullong.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+
+User Base Address Definitions
+
+HOME = 0x8000
+DATA = 0x0001
+SSEG = 0xffffffff
+
+
