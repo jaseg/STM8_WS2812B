@@ -9,29 +9,29 @@ INCLUDES := -Istm8s-sdcc/inc
 CFLAGS := --std-c11 -DSTM8S103 -DF_CPU=16000000 -lstm8 -mstm8 $(INCLUDES)
 LDFLAGS := 
 
-MAIN := proj/main.c
-SOURCES := proj/stm8s_it.c
+OUT_IMAGE := main.ihx
+SOURCES := src/stm8s_it.c src/main.c
 
 OUTDIR ?= build
 
-all: main.ihx
+all: $(OUT_IMAGE)
 
-main.ihx: $(OUTDIR)/main.ihx
+$(OUT_IMAGE): $(OUTDIR)/$(OUT_IMAGE)
 	cp $^ $@
 
-$(OUTDIR)/main.ihx: $(MAIN) $(addprefix $(OUTDIR)/,$(SOURCES:.c=.rel))
+$(OUTDIR)/$(OUT_IMAGE): $(addprefix $(OUTDIR)/,$(SOURCES:.c=.rel))
 	$(SDCC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
 $(OUTDIR)/%.rel: %.c
 	@mkdir -p $(dir $@)
 	$(SDCC) -c $(CFLAGS) -o $(dir $@) $^
 
-.PHONY:flash
+.PHONY: flash
 flash: all
-	$(STM8FLASH) -c$(PROGRAMMER) -p$(PART) -w $(notdir $(MAIN:.c=.ihx))
+	$(STM8FLASH) -c$(PROGRAMMER) -p$(PART) -w $(OUT_IMAGE)
 
 .PHONY: clean
 clean:
-	rm -f main.ihx
+	rm -f $(OUT_IMAGE)
 	rm -rf $(OUTDIR)
 
