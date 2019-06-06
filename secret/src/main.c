@@ -19,13 +19,13 @@ void main(void) {
     uint8_t log_idx = 0;
 
 #define MAX_IGNORED_BLIP_TIME 20 /* 10ms increments */
-#define PATTERN_LEN 5
-    uint8_t event_pattern_log[PATTERN_LEN]   = { 0, 1, 3, 2, 0 }; /* Ordered last item to first item! */
-    uint8_t event_pattern_min_times[PATTERN_LEN] = { 5, 5, 1, 5, 5 }; /* In 10ms increments */
-    uint8_t event_pattern_max_times[PATTERN_LEN] = { 200, 200, 200, 200, 200 }; /* In 10ms increments */
+#define PATTERN_LEN 4
+    uint8_t event_pattern_log[PATTERN_LEN]   = { 0, 1, 2, 0 }; /* Ordered last item to first item! */
+    uint8_t event_pattern_min_times[PATTERN_LEN] = { 5, 5, 5, 5 }; /* In 10ms increments */
+    uint8_t event_pattern_max_times[PATTERN_LEN] = { 200, 200, 200, 200 }; /* In 10ms increments */
 
     uint8_t matched = 0;
-#define EVENT_COUNT_TRIGGER 3
+#define EVENT_COUNT_TRIGGER 2
     uint8_t event_count = 0;
 #define EVENT_TIMEOUT 1000 /* 10ms increments */
     uint16_t event_timer = 0;
